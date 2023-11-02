@@ -51,8 +51,8 @@ def robustness_check(query, tokenizer, model, args):
 
 
 def main(args):
-    model = AutoModelForCausalLM.from_pretrained(_MODELS[args.test_model][0], device_map="auto")
-    tokenizer = AutoTokenizer.from_pretrained(_MODELS[args.test_model][0], trust_remote_code=True, use_fast=False)
+    model = AutoModelForCausalLM.from_pretrained(model_dirs[args.test_model][0], device_map="auto")
+    tokenizer = AutoTokenizer.from_pretrained(model_dirs[args.test_model][0], trust_remote_code=True, use_fast=False)
     tokenizer.padding_side = 'left'
 
     for q in range(len(test_samples[args.test_model])):
