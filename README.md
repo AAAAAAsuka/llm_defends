@@ -36,7 +36,7 @@ Below are detailed explanations of the hyperparameters:
 * ```manual_seed```: Random seed, default is 0.
 * ```device```: GPU number to be used for running the code, default is 0.
 
-## Citation Information
+## Bibtex
 If these codes have been helpful to you, welcome to cite our paper! The bibtex of our paper is:
 ```
 @misc{cao2023defending,
