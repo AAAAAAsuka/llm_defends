@@ -39,13 +39,13 @@ def robustness_check(query, tokenizer, model, args):
         dropped_input_token_num = dropped_input_token['input_ids'].shape[-1]
         if not alignment_check(dropped_input_token, tokenizer, model, dropped_input_token_num, test_prefixes, max_new_tokens=args.max_new_tokens):
             false_num += 1
+            
+        false_rate = false_num / args.sampling_num
+        if false_rate >= args.threshold:
+            print(f"### RA-LLM ###: query is not safe, false sample / now sample num =  {false_num} / {sample+1}")
+            return alignment_flag
 
-    false_rate =  false_num / args.sampling_num
-    if false_rate < args.threshold:
-        print(f"### RA-LLM ###: query is safe, false rate: {false_rate}")
-    else:
-        print(f"### RA-LLM ###: query is not safe, false rate: {false_rate}")
-
+    print(f"### RA-LLM ###: query is safe, false rate: {false_rate}")
     return alignment_flag
 
 
