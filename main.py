@@ -44,6 +44,9 @@ def robustness_check(query, tokenizer, model, args):
         if false_rate >= args.threshold:
             print(f"### RA-LLM ###: query is not safe, false sample / now sample num =  {false_num} / {sample+1}")
             return alignment_flag
+        if args.sampling_num - sample - 1 + false_num < (args.threshold * args.sampling_num) // 1:
+            print(f"### RA-LLM ###: query is safe, false sample / now sample num =  {false_num} / {sample+1}")
+            return alignment_flag
 
     print(f"### RA-LLM ###: query is safe, false rate: {false_rate}")
     return alignment_flag
